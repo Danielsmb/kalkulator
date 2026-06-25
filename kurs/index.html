@@ -83,7 +83,7 @@ function showResult(value, label, detail) {
 }
 function hitung() { var j=parseFloat(document.getElementById('a').value),d=document.getElementById('d').value,k=document.getElementById('k').value;
 if(!j||j<0){showResult('⚠️','Masukkan jumlah yang valid','');return;}
-var r=16450,h=d==='USD'?j*r:j/r;
+var r=liveRate,h=d==='USD'?j*r:j/r;
 if(d==='USD')showResult('Rp '+Math.round(h).toLocaleString('id-ID'),'$'+j.toLocaleString('en-US')+' USD','<small>Kurs: 1 USD = Rp '+r.toLocaleString('id-ID')+'</small>');
 else showResult('$ '+h.toFixed(4),'Rp '+Math.round(j).toLocaleString('id-ID'),'<small>Kurs: 1 USD = Rp '+r.toLocaleString('id-ID')+'</small>');
 document.getElementById('a').addEventListener('input',function(){if(this.value)hitung();});
