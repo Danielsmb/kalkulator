@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kalkulator KPR Online — Simulasi Cicilan Kredit Rumah Gratis 2026</title>
+<meta name="description" content="Simulasi cicilan KPR rumah online. Hitung angsuran bulanan KPR dengan bunga. Kalkulator KPR akurat & gratis!">
+<meta name="keywords" content="kalkulator kpr, simulasi kpr, cicilan rumah, kredit rumah, angsuran kpr, kalkulator kredit rumah">
+<link rel="canonical" href="https://kalkulator-phi-navy.vercel.app/kpr">
+<meta property="og:title" content="Kalkulator KPR Online — Simulasi Cicilan Kredit Rumah Gratis 2026">
+<meta property="og:description" content="Simulasi cicilan KPR rumah online. Hitung angsuran bulanan KPR dengan bunga. Kalkulator KPR akurat & gratis!">
+<meta property="og:url" content="https://kalkulator-phi-navy.vercel.app/kpr">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkulator KPR Online — Simulasi Cicilan Kredit Rumah Gratis 2026">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
+<style>
+:root{--bg:#f0f4f8;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.hero{text-align:center;padding:32px 20px 20px;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff}
+.hero h1{font-size:24px;font-weight:800;margin-bottom:6px}
+.hero p{font-size:14px;opacity:0.9;max-width:500px;margin:0 auto}
+.container{max-width:520px;margin:-12px auto 40px;padding:0 16px;position:relative}
+.calc-card{background:var(--card);border-radius:var(--radius);padding:28px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)}
+.calc-card h2{font-size:18px;font-weight:700;margin-bottom:4px}
+.desc{font-size:13px;color:var(--muted);margin-bottom:20px}
+.formula-box{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:10px 14px;margin-bottom:20px;font-size:12px;color:#0369a1;text-align:center;font-weight:500}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.form-group input,.form-group select{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;background:#fafbfc;transition:all 0.2s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.row{display:flex;gap:12px}
+.row .form-group{flex:1}
+.btn-calc{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px}
+.btn-calc:hover{background:#1d4ed8}
+.result{margin-top:20px;padding:20px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:var(--radius);display:none}
+.result.show{display:block}
+.result .value{font-size:32px;font-weight:800;color:#059669;text-align:center;margin-bottom:4px}
+.result .label{font-size:14px;color:#047857;text-align:center;font-weight:500}
+.result .detail{font-size:12px;color:#065f46;text-align:center;margin-top:8px;line-height:1.5}
+.category{display:inline-block;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:700;margin-top:8px}
+.cat-under{background:#dbeafe;color:#1e40af}.cat-normal{background:#d1fae5;color:#065f46}
+.cat-over{background:#fee2e2;color:#991b1b}.cat-obese{background:#fecaca;color:#7f1d1d}
+.back-link{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted);text-decoration:none}
+.back-link:hover{color:var(--primary)}
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--muted)}
+@media(max-width:480px){.calc-card{padding:20px 16px}.row{flex-direction:column;gap:0}.hero h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="hero"><h1>🏠 Kalkulator KPR (Kredit Pemilikan Rumah)</h1><p>Simulasi cicilan KPR bulanan. Masukkan harga rumah, DP, tenor & bunga.</p></div>
+<div class="container">
+<div class="calc-card">
+<h2>🏠 Kalkulator KPR (Kredit Pemilikan Rumah)</h2>
+<p class="desc">Simulasi cicilan KPR rumah online. Hitung angsuran bulanan KPR dengan bunga. Kalkulator KPR akurat & gratis!</p>
+<div class="formula-box">📐 Cicilan = (Pokok × Bunga/bln) / (1 − (1+Bunga/bln)^(−Tenor))</div>
+<div class="row"><div class="form-group"><label>Harga Rumah (Rp)</label><input type="number" id="a" placeholder="500000000" min="0"></div><div class="form-group"><label>DP / Uang Muka (%)</label><input type="number" id="b" placeholder="20" min="0" max="100"></div></div><div class="row"><div class="form-group"><label>Tenor (tahun)</label><input type="number" id="c" placeholder="15" min="1"></div><div class="form-group"><label>Bunga per Tahun (%)</label><input type="number" id="d" placeholder="8" min="0" step="any"></div></div>
+<button class="btn-calc" onclick="hitung()">Hitung Sekarang</button>
+<div id="result" class="result"></div>
+</div>
+<a href="/" class="back-link">← Kembali ke Semua Kalkulator</a>
+</div>
+<footer class="footer"><p>KalkulatorOnline &copy; 2026 — Gratis, tanpa iklan mengganggu.</p></footer>
+<script>
+function showResult(value, label, detail) {
+  var r = document.getElementById('result');
+  r.innerHTML = '<div class="value">' + value + '</div><div class="label">' + label + '</div><div class="detail">' + detail + '</div>';
+  r.classList.add('show');
+}
+function hitung() { var h=parseFloat(document.getElementById('a').value),dp=parseFloat(document.getElementById('b').value),tn=parseFloat(document.getElementById('c').value),bg=parseFloat(document.getElementById('d').value);
+if(!h||isNaN(dp)||!tn||isNaN(bg)||h<=0||dp<0||tn<=0||bg<0){showResult('⚠️','Masukkan semua data dengan benar','');return;}
+var pk=h*(1-dp/100),b=bg/100/12,n=tn*12,cic=(pk*b*Math.pow(1+b,n))/(Math.pow(1+b,n)-1),tot=cic*n;
+showResult('Rp '+Math.round(cic).toLocaleString('id-ID'),'Cicilan per bulan','<small>Pinjaman: Rp '+Math.round(pk).toLocaleString('id-ID')+' • Tenor: '+tn+' thn • Bunga: '+bg+'% • Total: Rp '+Math.round(tot).toLocaleString('id-ID')+'</small>'); }
+</script>
+</body>
+</html>

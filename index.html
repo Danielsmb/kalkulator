@@ -1,390 +1,62 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalkulator Online Gratis — BMI, Kurs, Diskon, Umur</title>
-  <meta name="description" content="Kalkulator online gratis: hitung BMI, konversi kurs dollar ke rupiah, kalkulator diskon belanja, dan hitung umur. Cepat, akurat, tanpa ribet.">
-  <link rel="canonical" href="https://kalkulator-phi-navy.vercel.app/">
-  <meta property="og:title" content="Kalkulator Online Gratis — BMI, Kurs, Diskon, Umur">
-  <meta property="og:description" content="Kalkulator online gratis buat kebutuhan sehari-hari. BMI, kurs dollar, diskon belanja, hitung umur. Cepat & akurat!">
-  <meta property="og:url" content="https://kalkulator-phi-navy.vercel.app/">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kalkulator Online Gratis — BMI, Kurs, Diskon, Umur">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
-  <style>
-    :root {
-      --bg: #f8fafc;
-      --card: #fff;
-      --text: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --accent: #10b981;
-      --accent-bg: #ecfdf5;
-      --radius: 12px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-    .hero {
-      text-align: center;
-      padding: 40px 20px 20px;
-      background: linear-gradient(135deg, #1e40af, #3b82f6);
-      color: #fff;
-    }
-    .hero h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-    .hero p { font-size: 14px; opacity: 0.9; max-width: 500px; margin: 0 auto; }
-    .container {
-      max-width: 800px;
-      margin: -20px auto 40px;
-      padding: 0 16px;
-      position: relative;
-    }
-    .tab-bar {
-      display: flex;
-      gap: 4px;
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 6px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      margin-bottom: 24px;
-      overflow-x: auto;
-    }
-    .tab-btn {
-      flex: 1;
-      min-width: fit-content;
-      padding: 12px 16px;
-      border: none;
-      background: transparent;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      border-radius: 8px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-    .tab-btn.active { background: var(--primary); color: #fff; }
-    .tab-btn:hover:not(.active) { background: #f1f5f9; }
-    .calc-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
-      display: none;
-    }
-    .calc-card.active { display: block; }
-    .calc-card h2 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-    .calc-card .desc {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-    .form-group { margin-bottom: 16px; }
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-size: 15px;
-      font-family: inherit;
-      transition: border 0.2s;
-      background: #fafbfc;
-    }
-    .form-group input:focus, .form-group select:focus {
-      outline: none;
-      border-color: var(--primary);
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-    }
-    .row { display: flex; gap: 12px; }
-    .row .form-group { flex: 1; }
-    .btn-calc {
-      width: 100%;
-      padding: 14px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 8px;
-    }
-    .btn-calc:hover { background: var(--primary-hover); }
-    .result {
-      margin-top: 20px;
-      padding: 20px;
-      background: var(--accent-bg);
-      border: 1px solid #a7f3d0;
-      border-radius: var(--radius);
-      display: none;
-    }
-    .result.show { display: block; }
-    .result .value {
-      font-size: 32px;
-      font-weight: 800;
-      color: #059669;
-      text-align: center;
-      margin-bottom: 4px;
-    }
-    .result .label {
-      font-size: 14px;
-      color: #047857;
-      text-align: center;
-      font-weight: 500;
-    }
-    .result .detail {
-      font-size: 12px;
-      color: #065f46;
-      text-align: center;
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-    .result .category {
-      display: inline-block;
-      padding: 4px 14px;
-      border-radius: 50px;
-      font-size: 12px;
-      font-weight: 700;
-      margin: 12px auto 0;
-      text-align: center;
-      width: fit-content;
-      display: block;
-    }
-    .cat-under { background: #dbeafe; color: #1e40af; }
-    .cat-normal { background: #d1fae5; color: #065f46; }
-    .cat-over { background: #fee2e2; color: #991b1b; }
-    .cat-obese { background: #fecaca; color: #7f1d1d; }
-    .footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .footer a { color: var(--primary); text-decoration: none; }
-    @media (max-width: 480px) {
-      .hero { padding: 30px 16px 16px; }
-      .hero h1 { font-size: 20px; }
-      .calc-card { padding: 20px 16px; }
-      .tab-btn { font-size: 12px; padding: 10px 12px; }
-      .row { flex-direction: column; gap: 0; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kalkulator Online Gratis — BMI, Kurs, Diskon, Umur & 10+ Tools Lainnya</title>
+<meta name="description" content="Kumpulan kalkulator online gratis terlengkap: BMI, kurs dollar rupiah, diskon, umur, zakat, THR, KPR, PPh 21, dan banyak lagi. Cepat, akurat, tanpa iklan mengganggu.">
+<link rel="canonical" href="https://kalkulator-phi-navy.vercel.app/">
+<meta property="og:title" content="Kalkulator Online Gratis Terlengkap — 15+ Tools">
+<meta property="og:description" content="Kalkulator online gratis: BMI, kurs, diskon, umur, zakat, THR, KPR, PPh 21, suhu, kalori, HPL, berat ideal & lainnya.">
+<meta property="og:url" content="https://kalkulator-phi-navy.vercel.app/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkulator Online Gratis Terlengkap">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
+<style>
+:root{--bg:#f0f4f8;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--accent:#10b981;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.hero{text-align:center;padding:48px 20px 32px;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff}
+.hero h1{font-size:28px;font-weight:800;margin-bottom:8px}
+.hero p{font-size:15px;opacity:0.9;max-width:600px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:0 16px 40px}
+.grid{margin:-16px auto 0;position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding-top:24px}
+.card{background:var(--card);border-radius:var(--radius);padding:20px;text-decoration:none;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 12px rgba(0,0,0,0.03);transition:all 0.2s;display:flex;align-items:flex-start;gap:12px}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.12)}
+.card .icon{font-size:28px;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#f0f4f8;border-radius:10px}
+.card .info h3{font-size:14px;font-weight:700;margin-bottom:2px}
+.card .info p{font-size:12px;color:var(--muted);line-height:1.4}
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--muted)}
+.footer a{color:var(--primary);text-decoration:none}
+@media(max-width:480px){.hero{padding:36px 16px 24px}.hero h1{font-size:22px}.grid{grid-template-columns:1fr 1fr;gap:8px}.card{padding:14px;gap:8px}.card .icon{font-size:22px;width:36px;height:36px}.card .info h3{font-size:13px}}
+</style>
 </head>
 <body>
-
 <div class="hero">
-  <h1>🔢 Kalkulator Online Gratis</h1>
-  <p>Hitung apa aja — BMI, kurs dollar, diskon belanja, umur. Cepat & akurat.</p>
+<h1>🔢 Kalkulator Online Gratis</h1>
+<p>Kumpulan kalkulator lengkap buat kebutuhan sehari-hari. Gratis, cepat, akurat.</p>
 </div>
-
 <div class="container">
-  <div class="tab-bar" role="tablist">
-    <button class="tab-btn active" onclick="switchTab('bmi')">⚖️ BMI</button>
-    <button class="tab-btn" onclick="switchTab('kurs')">💱 Kurs</button>
-    <button class="tab-btn" onclick="switchTab('diskon')">🏷️ Diskon</button>
-    <button class="tab-btn" onclick="switchTab('umur')">🎂 Umur</button>
-  </div>
-
-  <!-- BMI -->
-  <div id="bmi" class="calc-card active">
-    <h2>Kalkulator BMI</h2>
-    <p class="desc">Cek berat badan ideal kamu. Masukkan tinggi & berat badan.</p>
-    <div class="row">
-      <div class="form-group">
-        <label>Tinggi (cm)</label>
-        <input type="number" id="bmiTinggi" placeholder="Contoh: 170" min="1">
-      </div>
-      <div class="form-group">
-        <label>Berat (kg)</label>
-        <input type="number" id="bmiBerat" placeholder="Contoh: 65" min="1">
-      </div>
-    </div>
-    <button class="btn-calc" onclick="hitungBMI()">Hitung BMI</button>
-    <div id="bmiResult" class="result"></div>
-  </div>
-
-  <!-- Kurs -->
-  <div id="kurs" class="calc-card">
-    <h2>Kalkulator Kurs Dollar ke Rupiah</h2>
-    <p class="desc">Konversi mata uang USD ke IDR dan sebaliknya dengan kurs terkini.</p>
-    <div class="form-group">
-      <label>Jumlah</label>
-      <input type="number" id="kursJumlah" placeholder="Masukkan jumlah" min="0" step="any">
-    </div>
-    <div class="row">
-      <div class="form-group">
-        <label>Dari</label>
-        <select id="kursDari" onchange="autoConvert()">
-          <option value="USD">USD - US Dollar</option>
-          <option value="IDR">IDR - Rupiah</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Ke</label>
-        <select id="kursKe" onchange="autoConvert()">
-          <option value="IDR">IDR - Rupiah</option>
-          <option value="USD">USD - US Dollar</option>
-        </select>
-      </div>
-    </div>
-    <button class="btn-calc" onclick="hitungKurs()">Konversi</button>
-    <div id="kursResult" class="result"></div>
-  </div>
-
-  <!-- Diskon -->
-  <div id="diskon" class="calc-card">
-    <h2>Kalkulator Diskon</h2>
-    <p class="desc">Hitung harga setelah diskon. Biar gak ketipu pas belanja.</p>
-    <div class="row">
-      <div class="form-group">
-        <label>Harga Awal (Rp)</label>
-        <input type="number" id="diskonHarga" placeholder="Contoh: 250000" min="0">
-      </div>
-      <div class="form-group">
-        <label>Diskon (%)</label>
-        <input type="number" id="diskonPersen" placeholder="Contoh: 25" min="0" max="100">
-      </div>
-    </div>
-    <button class="btn-calc" onclick="hitungDiskon()">Hitung Diskon</button>
-    <div id="diskonResult" class="result"></div>
-  </div>
-
-  <!-- Umur -->
-  <div id="umur" class="calc-card">
-    <h2>Kalkulator Umur</h2>
-    <p class="desc">Hitung umur kamu dalam tahun, bulan, dan hari secara akurat.</p>
-    <div class="form-group">
-      <label>Tanggal Lahir</label>
-      <input type="date" id="umurTanggal">
-    </div>
-    <button class="btn-calc" onclick="hitungUmur()">Hitung Umur</button>
-    <div id="umurResult" class="result"></div>
-  </div>
+<div class="grid">
+<a href="/bmi" class="card"><div class="icon">⚖️</div><div class="info"><h3>BMI</h3><p>Cek berat badan ideal</p></div></a>
+<a href="/kurs" class="card"><div class="icon">💱</div><div class="info"><h3>Kurs Dollar</h3><p>USD ke Rupiah & sebaliknya</p></div></a>
+<a href="/diskon" class="card"><div class="icon">🏷️</div><div class="info"><h3>Diskon</h3><p>Hitung harga setelah diskon</p></div></a>
+<a href="/umur" class="card"><div class="icon">🎂</div><div class="info"><h3>Umur</h3><p>Hitung umur akurat</p></div></a>
+<a href="/zakat" class="card"><div class="icon">🕌</div><div class="info"><h3>Zakat</h3><p>Zakat penghasilan & mal</p></div></a>
+<a href="/thr" class="card"><div class="icon">🧧</div><div class="info"><h3>THR</h3><p>Kalkulator THR karyawan</p></div></a>
+<a href="/kpr" class="card"><div class="icon">🏠</div><div class="info"><h3>KPR</h3><p>Cicilan KPR rumah</p></div></a>
+<a href="/suhu" class="card"><div class="icon">🌡️</div><div class="info"><h3>Suhu</h3><p>Celsius ↔ Fahrenheit</p></div></a>
+<a href="/kalori" class="card"><div class="icon">🔥</div><div class="info"><h3>Kalori</h3><p>Kebutuhan kalori harian</p></div></a>
+<a href="/hpl" class="card"><div class="icon">🤰</div><div class="info"><h3>HPL Kehamilan</h3><p>Hari perkiraan lahir</p></div></a>
+<a href="/pph21" class="card"><div class="icon">📊</div><div class="info"><h3>PPh 21</h3><p>Pajak penghasilan</p></div></a>
+<a href="/berat-ideal" class="card"><div class="icon">📏</div><div class="info"><h3>Berat Ideal</h3><p>Broca & Devine formula</p></div></a>
+<a href="/persen" class="card"><div class="icon">💯</div><div class="info"><h3>Persentase</h3><p>Hitung persentase cepat</p></div></a>
+<a href="/cicilan" class="card"><div class="icon">💳</div><div class="info"><h3>Cicilan</h3><p>Simulasi cicilan bulanan</p></div></a>
+<a href="/waktu" class="card"><div class="icon">⏱️</div><div class="info"><h3>Waktu</h3><p>Konversi jam, menit, detik</p></div></a>
 </div>
-
-<footer class="footer">
-  <p>KalkulatorOnline &copy; 2026 — Gratis, tanpa iklan mengganggu.</p>
-</footer>
-
-<script>
-function switchTab(name) {
-  document.querySelectorAll('.calc-card').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(name).classList.add('active');
-  event.target.classList.add('active');
-}
-
-function formatRupiah(n) { return 'Rp ' + Math.round(n).toLocaleString('id-ID'); }
-
-// BMI
-function hitungBMI() {
-  var t = parseFloat(document.getElementById('bmiTinggi').value) / 100;
-  var b = parseFloat(document.getElementById('bmiBerat').value);
-  var r = document.getElementById('bmiResult');
-  if (!t || !b || t <= 0 || b <= 0) { r.innerHTML = '<div class="value">⚠️</div><div class="label">Masukkan tinggi & berat yang valid</div>'; r.classList.add('show'); return; }
-  var bmi = b / (t * t);
-  var cat = '', catClass = '', detail = '';
-  if (bmi < 18.5) { cat = 'Kurus'; catClass = 'cat-under'; detail = 'Berat badan kamu di bawah ideal. Perbanyak asupan nutrisi.'; }
-  else if (bmi < 25) { cat = 'Normal / Ideal'; catClass = 'cat-normal'; detail = 'Berat badan kamu ideal! Pertahankan pola hidup sehat.'; }
-  else if (bmi < 30) { cat = 'Kelebihan'; catClass = 'cat-over'; detail = 'Berat badan kamu di atas ideal. Mulai atur pola makan & olahraga.'; }
-  else { cat = 'Obesitas'; catClass = 'cat-obese'; detail = 'Konsultasikan ke dokter untuk program penurunan berat badan.'; }
-  r.innerHTML = '<div class="value">' + bmi.toFixed(1) + '</div><div class="label">BMI (Body Mass Index)</div><span class="category ' + catClass + '">' + cat + '</span><div class="detail">' + detail + '</div>';
-  r.classList.add('show');
-}
-
-// Kurs
-var rateUSD = null;
-function autoConvert() {
-  var dari = document.getElementById('kursDari').value;
-  var ke = document.getElementById('kursKe').value;
-  if (dari === ke) {
-    document.getElementById('kursDari').value = ke === 'USD' ? 'IDR' : 'USD';
-  }
-}
-function hitungKurs() {
-  var jumlah = parseFloat(document.getElementById('kursJumlah').value);
-  var dari = document.getElementById('kursDari').value;
-  var ke = document.getElementById('kursKe').value;
-  var r = document.getElementById('kursResult');
-  if (!jumlah || jumlah < 0) { r.innerHTML = '<div class="value">⚠️</div><div class="label">Masukkan jumlah yang valid</div>'; r.classList.add('show'); return; }
-
-  // Fixed rate untuk demo (real-nya bisa pake API)
-  var rate = 16450;
-  function convert() {
-    var hasil;
-    if (dari === 'USD' && ke === 'IDR') hasil = jumlah * rate;
-    else if (dari === 'IDR' && ke === 'USD') hasil = jumlah / rate;
-    else hasil = jumlah;
-
-    if (dari === 'USD') {
-      r.innerHTML = '<div class="value">' + formatRupiah(hasil) + '</div><div class="label">$' + jumlah.toLocaleString('en-US') + ' USD = ' + formatRupiah(hasil) + '</div><div class="detail">Kurs: 1 USD = ' + formatRupiah(rate) + '</div>';
-    } else {
-      r.innerHTML = '<div class="value">$ ' + hasil.toFixed(4) + '</div><div class="label">' + formatRupiah(jumlah) + ' = $' + hasil.toFixed(4) + ' USD</div><div class="detail">Kurs: 1 USD = ' + formatRupiah(rate) + '</div>';
-    }
-  }
-  convert();
-  r.classList.add('show');
-}
-
-// Diskon
-function hitungDiskon() {
-  var harga = parseFloat(document.getElementById('diskonHarga').value);
-  var persen = parseFloat(document.getElementById('diskonPersen').value);
-  var r = document.getElementById('diskonResult');
-  if (!harga || !persen || harga < 0 || persen < 0 || persen > 100) { r.innerHTML = '<div class="value">⚠️</div><div class="label">Masukkan harga & diskon yang valid</div>'; r.classList.add('show'); return; }
-  var potongan = harga * persen / 100;
-  var akhir = harga - potongan;
-  r.innerHTML = '<div class="value">' + formatRupiah(akhir) + '</div><div class="label">Harga setelah diskon ' + persen + '%</div><div class="detail">Harga awal: ' + formatRupiah(harga) + ' • Diskon: ' + formatRupiah(potongan) + ' (' + persen + '%) • <strong>Kamu hemat ' + formatRupiah(potongan) + '!</strong></div>';
-  r.classList.add('show');
-}
-
-// Umur
-function hitungUmur() {
-  var lahir = document.getElementById('umurTanggal').value;
-  var r = document.getElementById('umurResult');
-  if (!lahir) { r.innerHTML = '<div class="value">⚠️</div><div class="label">Pilih tanggal lahir kamu</div>'; r.classList.add('show'); return; }
-  var birth = new Date(lahir);
-  var now = new Date();
-  if (birth > now) { r.innerHTML = '<div class="value">⏰</div><div class="label">Tanggal lahir belum terjadi</div>'; r.classList.add('show'); return; }
-  var tahun = now.getFullYear() - birth.getFullYear();
-  var bulan = now.getMonth() - birth.getMonth();
-  var hari = now.getDate() - birth.getDate();
-  if (hari < 0) { bulan--; var prev = new Date(now.getFullYear(), now.getMonth(), 0); hari += prev.getDate(); }
-  if (bulan < 0) { tahun--; bulan += 12; }
-  var totalBulan = tahun * 12 + bulan;
-  var totalHari = Math.floor((now - birth) / (1000 * 60 * 60 * 24));
-  r.innerHTML = '<div class="value">' + tahun + ' Tahun</div><div class="label">' + bulan + ' Bulan • ' + hari + ' Hari</div><div class="detail">Total: ' + totalBulan.toLocaleString('id-ID') + ' bulan • ' + totalHari.toLocaleString('id-ID') + ' hari sejak lahir</div>';
-  r.classList.add('show');
-}
-
-// Auto konversi saat input berubah
-document.getElementById('kursJumlah').addEventListener('input', function() { if (this.value) hitungKurs(); });
-document.getElementById('kursDari').addEventListener('change', function() { autoConvert(); if (document.getElementById('kursJumlah').value) hitungKurs(); });
-document.getElementById('kursKe').addEventListener('change', function() { autoConvert(); if (document.getElementById('kursJumlah').value) hitungKurs(); });
-</script>
+</div>
+<footer class="footer"><p>KalkulatorOnline &copy; 2026 — Gratis, tanpa iklan mengganggu.</p></footer>
 </body>
 </html>
