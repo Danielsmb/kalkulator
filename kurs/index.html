@@ -59,7 +59,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <div class="calc-card">
 <h2>💱 Kalkulator Kurs Dollar ke Rupiah</h2>
 <p class="desc">Konversi Dollar Amerika (USD) ke Rupiah Indonesia (IDR) online. Kalkulator kurs dollar terkini, cepat & akurat. Cek kurs hari ini!</p>
-<div class="formula-box">📐 1 USD = Rp 16.450 (kurs referensi)</div>
+<div class="formula-box">📐 Memuat kurs terkini...</div>
 <div class="form-group"><label>Jumlah</label><input type="number" id="a" placeholder="100" min="0" step="any"></div><div class="row"><div class="form-group"><label>Dari</label><select id="d"><option value="USD">USD - Dollar</option><option value="IDR">IDR - Rupiah</option></select></div><div class="form-group"><label>Ke</label><select id="k"><option value="IDR">IDR - Rupiah</option><option value="USD">USD - Dollar</option></select></div></div>
 <button class="btn-calc" onclick="hitung()">Hitung Sekarang</button>
 <div id="result" class="result"></div>
@@ -76,6 +76,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 <footer class="footer"><p><a href="/">KalkulatorOnline</a> &copy; 2026 — Gratis, tanpa iklan mengganggu.</p></footer>
 <script>
+var liveRate = 16450;
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://api.frankfurter.app/latest?from=USD&to=IDR')
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      liveRate = d.rates.IDR;
+      var box = document.querySelector('.formula-box');
+      box.innerHTML = '📐 1 USD = Rp ' + Math.round(liveRate).toLocaleString('id-ID') + ' <span style="color:#059669;font-weight:700">● LIVE</span>';
+      if (document.getElementById('a').value) hitung();
+    })
+    .catch(function() {
+      document.querySelector('.formula-box').innerHTML = '📐 1 USD = Rp ' + liveRate.toLocaleString('id-ID') + ' (kurs referensi)';
+    });
+});
 function showResult(value, label, detail) {
   var r = document.getElementById('result');
   r.innerHTML = '<div class="value">' + value + '</div><div class="label">' + label + '</div><div class="detail">' + detail + '</div>';
