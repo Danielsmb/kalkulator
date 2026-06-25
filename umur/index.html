@@ -14,6 +14,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kalkulator Umur Online — Hitung Umur Akurat Tahun, Bulan, Hari 2026">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://kalkulator-phi-navy.vercel.app/"},{"@type":"ListItem","position":2,"name":"Kalkulator Umur","item":"https://kalkulator-phi-navy.vercel.app/umur"}]}
+</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
 <style>
 :root{--bg:#f0f4f8;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--radius:12px}
@@ -60,9 +63,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <button class="btn-calc" onclick="hitung()">Hitung Sekarang</button>
 <div id="result" class="result"></div>
 </div>
-<a href="/" class="back-link">← Kembali ke Semua Kalkulator</a>
+<div class="related"><h3>🔗 Kalkulator Terkait</h3><div class="related-links">
+      <a href="/bmi">BMI</a>
+      <a href="/kurs">Kurs Dollar</a>
+      <a href="/diskon">Diskon</a>
+      <a href="/zakat">Zakat</a>
+      <a href="/thr">THR</a>
+    </div></div>
+
+  <a href="/" class="back-link">← Kembali ke Semua Kalkulator</a>
 </div>
-<footer class="footer"><p>KalkulatorOnline &copy; 2026 — Gratis, tanpa iklan mengganggu.</p></footer>
+<footer class="footer"><p><a href="/">KalkulatorOnline</a> &copy; 2026 — Gratis, tanpa iklan mengganggu.</p></footer>
 <script>
 function showResult(value, label, detail) {
   var r = document.getElementById('result');
