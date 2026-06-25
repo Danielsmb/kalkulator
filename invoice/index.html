@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Invoice Generator Online Gratis — Buat Invoice Sederhana</title>
+<meta name="description" content="Buat invoice / faktur sederhana online gratis. Isi detail, generate invoice, download atau print langsung. Cocok buat freelancer & UMKM!">
+<meta name="keywords" content="invoice generator, buat invoice, faktur online, invoice gratis, buat faktur, invoice freelancer">
+<link rel="canonical" href="/invoice">
+<meta property="og:title" content="Invoice Generator Online Gratis">
+<meta property="og:description" content="Buat invoice sederhana online. Download & print. Gratis!">
+<meta property="og:url" content="/invoice">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<style>:root{--bg:#f0f4f8;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.hero{text-align:center;padding:32px 20px 20px;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff}
+.hero h1{font-size:24px;font-weight:800;margin-bottom:6px}
+.hero p{font-size:14px;opacity:0.9;max-width:500px;margin:0 auto}
+.container{max-width:520px;margin:-12px auto 40px;padding:0 16px;position:relative}
+.card{background:var(--card);border-radius:var(--radius);padding:28px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)}
+.card h2{font-size:18px;font-weight:700;margin-bottom:4px}
+.desc{font-size:13px;color:var(--muted);margin-bottom:20px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;background:#fafbfc;transition:all 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.row{display:flex;gap:12px}
+.row .form-group{flex:1}
+.btn{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;transition:background 0.2s}
+.btn:hover{background:#1d4ed8}
+.btn-sm{padding:8px 16px;font-size:13px;width:auto}
+.result{margin-top:20px;padding:20px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:var(--radius);display:none;word-break:break-all}
+.result.show{display:block}
+.result .value{font-size:22px;font-weight:800;color:#059669;text-align:center;margin-bottom:4px}
+.result .label{font-size:14px;color:#047857;text-align:center;font-weight:500}
+.result .detail{font-size:12px;color:#065f46;text-align:center;margin-top:8px}
+.back-link{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted);text-decoration:none}
+.back-link:hover{color:var(--primary)}
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--muted)}
+.footer a{color:var(--primary);text-decoration:none}
+@media(max-width:480px){.card{padding:20px 16px}.row{flex-direction:column;gap:0}.hero h1{font-size:20px}}
+
+.invoice-preview{background:#fff;border:2px solid var(--border);border-radius:12px;padding:28px 24px;margin:16px 0;font-size:13px;line-height:1.8}
+.inv-header{text-align:center;margin-bottom:20px}
+.inv-header h3{font-size:20px;font-weight:800}
+.inv-table{width:100%;border-collapse:collapse;margin:16px 0}
+.inv-table th,.inv-table td{padding:8px 12px;border-bottom:1px solid var(--border);text-align:left}
+.inv-table th{font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.inv-total{text-align:right;font-size:18px;font-weight:800;color:#059669;margin-top:12px}
+@media print{body{background:#fff}.hero,.card{display:none}.container{margin:0;padding:0}.invoice-preview{border:none;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="hero"><h1>📄 Invoice Generator</h1><p>Buat invoice sederhana — isi, preview, print. Gratis!</p></div>
+<div class="container">
+<div class="card">
+<h2>Buat Invoice</h2>
+<p class="desc">Isi detail invoice, langsung preview & bisa di-print.</p>
+<div class="row">
+<div class="form-group"><label>Nomor Invoice</label><input type="text" id="invNo" value="INV-20260625-001" oninput="update()"></div>
+<div class="form-group"><label>Tanggal</label><input type="date" id="invDate" oninput="update()"></div>
+</div>
+<div class="form-group"><label>Dari (Nama/Perusahaan)</label><input type="text" id="invFrom" value="Freelancer Indonesia" oninput="update()"></div>
+<div class="form-group"><label>Kepada (Klien)</label><input type="text" id="invTo" value="Nama Klien" oninput="update()"></div>
+<div class="form-group"><label>Deskripsi</label><input type="text" id="invDesc" value="Jasa pembuatan website" oninput="update()"></div>
+<div class="row">
+<div class="form-group"><label>Jumlah (Rp)</label><input type="number" id="invAmount" value="5000000" oninput="update()"></div>
+<div class="form-group"><label>Pajak (%)</label><input type="number" id="invTax" value="0" oninput="update()"></div>
+</div>
+<div class="invoice-preview" id="preview"></div>
+<button class="btn" onclick="window.print()">🖨️ Print Invoice</button>
+</div>
+<a href="/" class="back-link">← Semua Kalkulator ← Semua Tools Tools</a>
+</div>
+<footer class="footer"><p><a href="/">KalkulatorOnline</a> &copy; 2026</p></footer>
+<script>
+document.getElementById('invDate').valueAsDate=new Date();
+function update(){
+  var no=document.getElementById('invNo').value||'INV-001';
+  var dt=document.getElementById('invDate').value;
+  var from=document.getElementById('invFrom').value||'—';
+  var to=document.getElementById('invTo').value||'—';
+  var desc=document.getElementById('invDesc').value||'—';
+  var amt=parseFloat(document.getElementById('invAmount').value)||0;
+  var tax=parseFloat(document.getElementById('invTax').value)||0;
+  var taxAmt=amt*tax/100;
+  var total=amt+taxAmt;
+  document.getElementById('preview').innerHTML='<div class="inv-header"><h3>INVOICE</h3><p>'+no+' • '+dt+'</p></div><p><strong>Dari:</strong> '+from+'</p><p><strong>Kepada:</strong> '+to+'</p><table class="inv-table"><tr><th>Deskripsi</th><th>Jumlah</th></tr><tr><td>'+desc+'</td><td>Rp '+Math.round(amt).toLocaleString('id-ID')+'</td></tr></table>'+ (tax>0?'<p style="text-align:right">Pajak '+tax+'%: Rp '+Math.round(taxAmt).toLocaleString('id-ID')+'</p>':'') +'<div class="inv-total">Total: Rp '+Math.round(total).toLocaleString('id-ID')+'</div>';
+}
+update();
+</script>
+</body>
+</html>

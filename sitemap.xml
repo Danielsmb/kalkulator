@@ -28,4 +28,12 @@
 <url><loc>https://kalkulator-phi-navy.vercel.app/konversi-panjang</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://kalkulator-phi-navy.vercel.app/privacy</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://kalkulator-phi-navy.vercel.app/about</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/qr-code</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/password</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/random</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/konversi</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/text</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/countdown</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/color</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/invoice</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

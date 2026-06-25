@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Unit Converter Online — Konversi Panjang, Berat, Volume, Suhu Gratis</title>
+<meta name="description" content="Konversi satuan online lengkap: panjang (cm, m, km, inci), berat (kg, gram, pon), volume (liter, ml), suhu (C, F). Gratis & cepat!">
+<meta name="keywords" content="unit converter, konversi satuan, konversi panjang, konversi berat, konversi volume, konversi suhu">
+<link rel="canonical" href="/konversi">
+<meta property="og:title" content="Unit Converter Online — Konversi Satuan Lengkap">
+<meta property="og:description" content="Konversi panjang, berat, volume, suhu. Semua satuan dalam 1 halaman!">
+<meta property="og:url" content="/konversi">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<style>:root{--bg:#f0f4f8;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.hero{text-align:center;padding:32px 20px 20px;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff}
+.hero h1{font-size:24px;font-weight:800;margin-bottom:6px}
+.hero p{font-size:14px;opacity:0.9;max-width:500px;margin:0 auto}
+.container{max-width:520px;margin:-12px auto 40px;padding:0 16px;position:relative}
+.card{background:var(--card);border-radius:var(--radius);padding:28px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)}
+.card h2{font-size:18px;font-weight:700;margin-bottom:4px}
+.desc{font-size:13px;color:var(--muted);margin-bottom:20px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;background:#fafbfc;transition:all 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.row{display:flex;gap:12px}
+.row .form-group{flex:1}
+.btn{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;transition:background 0.2s}
+.btn:hover{background:#1d4ed8}
+.btn-sm{padding:8px 16px;font-size:13px;width:auto}
+.result{margin-top:20px;padding:20px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:var(--radius);display:none;word-break:break-all}
+.result.show{display:block}
+.result .value{font-size:22px;font-weight:800;color:#059669;text-align:center;margin-bottom:4px}
+.result .label{font-size:14px;color:#047857;text-align:center;font-weight:500}
+.result .detail{font-size:12px;color:#065f46;text-align:center;margin-top:8px}
+.back-link{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted);text-decoration:none}
+.back-link:hover{color:var(--primary)}
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--muted)}
+.footer a{color:var(--primary);text-decoration:none}
+@media(max-width:480px){.card{padding:20px 16px}.row{flex-direction:column;gap:0}.hero h1{font-size:20px}}
+
+.conv-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:16px 0}
+.conv-item{padding:12px;background:#f8fafc;border-radius:8px;text-align:center;font-size:13px;cursor:pointer;transition:all 0.2s;border:1px solid transparent}
+.conv-item:hover{border-color:var(--primary);background:#eff6ff}
+.conv-item.active{background:#eff6ff;border-color:var(--primary);font-weight:700}
+.conv-result{background:#f0f9ff;border:2px dashed #bae6fd;border-radius:8px;padding:20px;text-align:center;margin:16px 0;font-size:22px;font-weight:700;color:#1e40af}
+</style>
+</head>
+<body>
+<div class="hero"><h1>📏 Unit Converter</h1><p>Konversi panjang, berat, volume, suhu — semua dalam 1 halaman.</p></div>
+<div class="container">
+<div class="card">
+<h2>Konversi Satuan</h2>
+<p class="desc">Pilih kategori, masukkan nilai, hasil langsung muncul.</p>
+<div class="form-group"><label>Kategori</label><select id="cat" onchange="updateUnits()">
+<option value="length">Panjang</option><option value="weight">Berat</option><option value="volume">Volume</option><option value="temp">Suhu</option></select></div>
+<div class="form-group"><label>Nilai</label><input type="number" id="val" placeholder="1" step="any" oninput="convert()"></div>
+<div class="conv-grid" id="units"></div>
+<div class="conv-result" id="convResult">Masukkan nilai</div>
+</div>
+<a href="/" class="back-link">← Semua Kalkulator ← Semua Tools Tools</a>
+</div>
+<footer class="footer"><p><a href="/">KalkulatorOnline</a> &copy; 2026</p></footer>
+<script>
+var data={
+  length:{
+    name:'Panjang',from:'m',
+    units:{m:1,cm:100,mm:1000,km:0.001,inci:39.3701,kaki:3.28084,yard:1.09361,mil:0.000621371},
+    labels:{m:'Meter',cm:'Sentimeter',mm:'Milimeter',km:'Kilometer',inci:'Inci',kaki:'Kaki',yard:'Yard',mil:'Mil'}
+  },
+  weight:{
+    name:'Berat',from:'kg',units:{kg:1,g:1000,mg:1e6,pon:2.20462,ons:35.274,ton:0.001},
+    labels:{kg:'Kilogram',g:'Gram',mg:'Miligram',pon:'Pon',ons:'Ons',ton:'Ton'}
+  },
+  volume:{
+    name:'Volume',from:'l',units:{l:1,ml:1000,m3:0.001,galon:0.264172,gelas:4.16667},
+    labels:{l:'Liter',ml:'Mililiter',m3:'Meter Kubik',galon:'Galon (US)',gelas:'Gelas (240ml)'}
+  },
+  temp:{
+    name:'Suhu',from:'c',
+    units:{c:1,f:1,k:1},
+    labels:{c:'Celsius',f:'Fahrenheit',k:'Kelvin'},
+    special:true
+  }
+};
+var currentUnit='m';
+function updateUnits(){
+  var cat=document.getElementById('cat').value;
+  var d=data[cat];
+  var el=document.getElementById('units');
+  currentUnit=Object.keys(d.units)[0];
+  var html='';
+  for(var u in d.units){
+    html+='<div class="conv-item'+(u===currentUnit?' active':'')+'" onclick="selectUnit(''+u+'')">'+d.labels[u]+'</div>';
+  }
+  el.innerHTML=html;
+  document.getElementById('val').value='';
+  document.getElementById('convResult').textContent='Masukkan nilai';
+}
+function selectUnit(u){ currentUnit=u;updateUnits();convert(); }
+function convert(){
+  var cat=document.getElementById('cat').value;
+  var val=parseFloat(document.getElementById('val').value);
+  var d=data[cat];
+  if(isNaN(val)){ document.getElementById('convResult').textContent='Masukkan nilai';return; }
+  var el=document.getElementById('convResult');
+  if(d.special){
+    var c=val;
+    if(currentUnit==='f') c=(val-32)*5/9;
+    else if(currentUnit==='k') c=val-273.15;
+    var f=c*9/5+32,k=c+273.15;
+    el.innerHTML=c.toFixed(2)+'°C = '+f.toFixed(2)+'°F = '+k.toFixed(2)+'K';
+  }else{
+    var base=val/d.units[currentUnit];
+    var lines=[];
+    for(var u in d.units){
+      if(u!==currentUnit) lines.push((base*d.units[u]).toFixed(4)+' '+d.labels[u]);
+    }
+    el.innerHTML=val+' '+d.labels[currentUnit]+' =<br>'+lines.join('<br>');
+  }
+}
+updateUnits();
+</script>
+</body>
+</html>

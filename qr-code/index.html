@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>QR Code Generator Online Gratis — Buat QR Code dari Teks & Link</title>
+<meta name="description" content="Buat QR Code online gratis dari teks, link, nomor WA, atau apapun. Download QR Code PNG langsung. Tanpa daftar, tanpa watermark!">
+<meta name="keywords" content="qr code generator, buat qr code, qr code online, qr code wa, qr code gratis, bikin qr">
+<link rel="canonical" href="/qr-code">
+<meta property="og:title" content="QR Code Generator Online Gratis">
+<meta property="og:description" content="Buat QR Code dari teks, link, nomor WA. Download langsung!">
+<meta property="og:url" content="/qr-code">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>:root{--bg:#f0f4f8;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.hero{text-align:center;padding:32px 20px 20px;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff}
+.hero h1{font-size:24px;font-weight:800;margin-bottom:6px}
+.hero p{font-size:14px;opacity:0.9;max-width:500px;margin:0 auto}
+.container{max-width:520px;margin:-12px auto 40px;padding:0 16px;position:relative}
+.card{background:var(--card);border-radius:var(--radius);padding:28px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)}
+.card h2{font-size:18px;font-weight:700;margin-bottom:4px}
+.desc{font-size:13px;color:var(--muted);margin-bottom:20px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;background:#fafbfc;transition:all 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.row{display:flex;gap:12px}
+.row .form-group{flex:1}
+.btn{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;transition:background 0.2s}
+.btn:hover{background:#1d4ed8}
+.btn-sm{padding:8px 16px;font-size:13px;width:auto}
+.result{margin-top:20px;padding:20px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:var(--radius);display:none;word-break:break-all}
+.result.show{display:block}
+.result .value{font-size:22px;font-weight:800;color:#059669;text-align:center;margin-bottom:4px}
+.result .label{font-size:14px;color:#047857;text-align:center;font-weight:500}
+.result .detail{font-size:12px;color:#065f46;text-align:center;margin-top:8px}
+.back-link{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted);text-decoration:none}
+.back-link:hover{color:var(--primary)}
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--muted)}
+.footer a{color:var(--primary);text-decoration:none}
+@media(max-width:480px){.card{padding:20px 16px}.row{flex-direction:column;gap:0}.hero h1{font-size:20px}}
+
+.qr-wrap{text-align:center;margin:16px 0}
+#qrcode{display:inline-block;padding:12px;background:#fff;border-radius:8px}
+#qrcode canvas,#qrcode img{max-width:200px;height:auto}
+.btn-download{background:#059669;margin-top:8px}
+.btn-download:hover{background:#047857}
+input[type="color"]{height:50px;cursor:pointer;padding:4px 8px}
+</style>
+</head>
+<body>
+<div class="hero"><h1>📱 QR Code Generator Gratis</h1><p>Buat QR code dari teks, link, nomor WA. Download langsung.</p></div>
+<div class="container">
+<div class="card">
+<h2>Buat QR Code</h2>
+<p class="desc">Masukkan teks atau link, QR code langsung jadi. Bisa download PNG.</p>
+<div class="form-group"><label>Teks / Link / Nomor WA</label>
+<input type="text" id="qrtext" placeholder="https://... atau teks bebas" oninput="generateQR()"></div>
+<div class="row">
+<div class="form-group"><label>Warna QR</label><input type="color" id="qrcolor" value="#000000" onchange="generateQR()"></div>
+<div class="form-group"><label>Ukuran</label><select id="qrsize" onchange="generateQR()"><option value="200">Kecil</option><option value="300" selected>Sedang</option><option value="400">Besar</option></select></div>
+</div>
+<div class="qr-wrap"><div id="qrcode"></div></div>
+<button class="btn btn-download" onclick="downloadQR()">⬇ Download QR Code (PNG)</button>
+</div>
+<a href="/" class="back-link">← Semua Kalkulator ← Semua Tools Tools</a>
+</div>
+<footer class="footer"><p><a href="/">KalkulatorOnline</a> &copy; 2026</p></footer>
+<script>
+var qrInstance = null;
+function generateQR() {
+  var text = document.getElementById('qrtext').value.trim();
+  var color = document.getElementById('qrcolor').value;
+  var size = parseInt(document.getElementById('qrsize').value);
+  var el = document.getElementById('qrcode');
+  el.innerHTML = '';
+  if (!text) return;
+  qrInstance = new QRCode(el, { text: text, width: size, height: size, colorDark: color, colorLight: '#ffffff' });
+}
+function downloadQR() {
+  var canvas = document.querySelector('#qrcode canvas');
+  if (!canvas) return;
+  var link = document.createElement('a');
+  link.download = 'qr-code.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+</script>
+</body>
+</html>

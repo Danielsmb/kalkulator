@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Random Generator Online — Dadu, Spin Wheel, Random Number & Picker</title>
+<meta name="description" content="Random generator online: lempar dadu, spin wheel, random number, random picker. Pilih acak dari list. Gratis & seru!">
+<meta name="keywords" content="random generator, dadu online, spin wheel, random number, random picker, acak, lempar dadu">
+<link rel="canonical" href="/random">
+<meta property="og:title" content="Random Generator Online — Dadu, Spin, Picker">
+<meta property="og:description" content="Dadu online, spin wheel, random number, random picker. Gratis!">
+<meta property="og:url" content="/random">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<style>:root{--bg:#f0f4f8;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.hero{text-align:center;padding:32px 20px 20px;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff}
+.hero h1{font-size:24px;font-weight:800;margin-bottom:6px}
+.hero p{font-size:14px;opacity:0.9;max-width:500px;margin:0 auto}
+.container{max-width:520px;margin:-12px auto 40px;padding:0 16px;position:relative}
+.card{background:var(--card);border-radius:var(--radius);padding:28px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)}
+.card h2{font-size:18px;font-weight:700;margin-bottom:4px}
+.desc{font-size:13px;color:var(--muted);margin-bottom:20px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;background:#fafbfc;transition:all 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.row{display:flex;gap:12px}
+.row .form-group{flex:1}
+.btn{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;transition:background 0.2s}
+.btn:hover{background:#1d4ed8}
+.btn-sm{padding:8px 16px;font-size:13px;width:auto}
+.result{margin-top:20px;padding:20px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:var(--radius);display:none;word-break:break-all}
+.result.show{display:block}
+.result .value{font-size:22px;font-weight:800;color:#059669;text-align:center;margin-bottom:4px}
+.result .label{font-size:14px;color:#047857;text-align:center;font-weight:500}
+.result .detail{font-size:12px;color:#065f46;text-align:center;margin-top:8px}
+.back-link{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted);text-decoration:none}
+.back-link:hover{color:var(--primary)}
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--muted)}
+.footer a{color:var(--primary);text-decoration:none}
+@media(max-width:480px){.card{padding:20px 16px}.row{flex-direction:column;gap:0}.hero h1{font-size:20px}}
+
+.dice-display{text-align:center;font-size:80px;margin:20px 0;transition:transform 0.3s}
+.dice-display.rolling{animation:shake 0.1s infinite}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-15deg)}75%{transform:rotate(15deg)}}
+.picker-input textarea{resize:vertical;min-height:100px}
+.tag{display:inline-block;background:#eff6ff;color:#2563eb;padding:6px 12px;border-radius:20px;margin:4px;font-size:13px;font-weight:500}
+.picked{background:#d1fae5;color:#059669;font-size:18px;font-weight:800;padding:12px 24px;animation:bounce 0.5s}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+</style>
+</head>
+<body>
+<div class="hero"><h1>🎲 Random Generator</h1><p>Lempar dadu, random number, spin wheel, random picker.</p></div>
+<div class="container">
+<div class="card">
+<h2>🎲 Lempar Dadu</h2>
+<p class="desc">Klik tombol atau tekan spasi untuk lempar dadu.</p>
+<div class="dice-display" id="dice">🎲</div>
+<button class="btn" onclick="rollDice()">🎲 Lempar Dadu</button>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>🔢 Random Number</h2>
+<p class="desc">Generate angka acak antara dua nilai.</p>
+<div class="row">
+<div class="form-group"><label>Dari</label><input type="number" id="rnMin" value="1"></div>
+<div class="form-group"><label>Sampai</label><input type="number" id="rnMax" value="100"></div>
+</div>
+<div style="text-align:center;font-size:48px;font-weight:800;color:#059669;margin:16px 0" id="rnResult">—</div>
+<button class="btn" onclick="randomNum()">🔢 Generate Random</button>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>🎯 Random Picker</h2>
+<p class="desc">Masukkan daftar item (pisah dengan koma atau baris baru).</p>
+<div class="form-group"><textarea id="pickerItems" placeholder="Apel, Jeruk, Mangga, Anggur, Pisang" rows="3"></textarea></div>
+<div id="pickerTags" style="margin-bottom:12px"></div>
+<div style="text-align:center;min-height:50px" id="pickedItem"></div>
+<button class="btn" onclick="randomPick()">🎯 Pilih Acak</button>
+</div>
+<a href="/" class="back-link">← Semua Kalkulator ← Semua Tools Tools</a>
+</div>
+<footer class="footer"><p><a href="/">KalkulatorOnline</a> &copy; 2026</p></footer>
+<script>
+function rollDice(){
+  var d=document.getElementById('dice');
+  d.classList.add('rolling');
+  var emojis=['⚀','⚁','⚂','⚃','⚄','⚅'];
+  var result=Math.floor(Math.random()*6);
+  setTimeout(function(){ d.classList.remove('rolling');d.textContent=emojis[result]; },400);
+}
+function randomNum(){
+  var min=parseInt(document.getElementById('rnMin').value)||1;
+  var max=parseInt(document.getElementById('rnMax').value)||100;
+  if(min>max)[min,max]=[max,min];
+  var r=Math.floor(Math.random()*(max-min+1))+min;
+  document.getElementById('rnResult').textContent=r;
+}
+function randomPick(){
+  var raw=document.getElementById('pickerItems').value;
+  var items=raw.split(/[,\n]+/).map(function(s){return s.trim()}).filter(Boolean);
+  var tagsEl=document.getElementById('pickerTags');
+  tagsEl.innerHTML=items.map(function(i){return '<span class="tag">'+i+'</span>'}).join('');
+  if(items.length===0){ document.getElementById('pickedItem').innerHTML='';return; }
+  var pick=items[Math.floor(Math.random()*items.length)];
+  document.getElementById('pickedItem').innerHTML='<span class="tag picked">🎯 '+pick+'</span>';
+}
+document.addEventListener('keydown',function(e){ if(e.code==='Space'){ e.preventDefault();rollDice(); } });
+</script>
+</body>
+</html>

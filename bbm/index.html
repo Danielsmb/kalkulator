@@ -54,12 +54,93 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .footer{text-align:center;padding:20px;font-size:12px;color:var(--muted)}
 .footer a{color:var(--primary)}
 @media(max-width:480px){.calc-card{padding:20px 16px}.row{flex-direction:column;gap:0}.hero h1{font-size:20px}}
+
+/* ===== TOP NAV MENU ===== */
+.top-nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:48px}
+.nav-logo{font-weight:800;font-size:15px;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.nav-toggle{background:none;border:none;font-size:22px;cursor:pointer;color:var(--text);padding:6px 8px;border-radius:6px;line-height:1;display:flex;align-items:center}
+.nav-toggle:hover{background:#f1f5f9}
+.nav-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.5);z-index:999;display:none}
+.nav-overlay.show{display:block}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:#fff;z-index:1001;overflow-y:auto;transform:translateX(100%);transition:transform 0.25s ease;box-shadow:-4px 0 20px rgba(0,0,0,0.1)}
+.nav-drawer.show{transform:translateX(0)}
+.nav-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2}
+.nav-drawer-head span{font-weight:800;font-size:15px;color:var(--text)}
+.nav-drawer-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);padding:4px 8px;border-radius:6px;line-height:1}
+.nav-drawer-close:hover{color:var(--text);background:#f1f5f9}
+.nav-drawer-body{padding:12px 16px}
+.nav-cat{margin-bottom:16px}
+.nav-cat-title{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;padding:0 4px}
+.nav-cat a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-size:14px;font-weight:500;transition:all 0.15s}
+.nav-cat a:hover{background:#f0f4f8;color:var(--primary)}
+.nav-cat a .ni{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+.nav-current{background:#eff6ff!important;color:var(--primary)!important;font-weight:600!important;border-radius:8px}
+body.nav-open{overflow:hidden}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://kalkulator-phi-navy.vercel.app/"},{"@type":"ListItem","position":2,"name":"Biaya BBM","item":"https://kalkulator-phi-navy.vercel.app/bbm"}]}
 </script>
 </head>
 <body>
+
+<nav class="top-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🔢 KalkulatorOnline</a>
+    <button class="nav-toggle" onclick="openMenu()" aria-label="Buka Menu">☰</button>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-head">
+    <span>🔢 Semua Kalkulator</span>
+    <button class="nav-drawer-close" onclick="closeMenu()">✕</button>
+  </div>
+  <div class="nav-drawer-body">
+    <div class="nav-cat">
+      <span class="nav-cat-title">💰 Keuangan</span>
+      <a href="/kurs"><span class="ni">💱</span>Kurs Dollar</a>
+      <a href="/diskon"><span class="ni">🏷️</span>Diskon</a>
+      <a href="/persen"><span class="ni">💯</span>Persentase</a>
+      <a href="/cicilan"><span class="ni">💳</span>Cicilan</a>
+      <a href="/kpr"><span class="ni">🏠</span>KPR</a>
+      <a href="/pph21"><span class="ni">📊</span>PPh 21</a>
+      <a href="/zakat"><span class="ni">🕌</span>Zakat</a>
+      <a href="/thr"><span class="ni">🧧</span>THR</a>
+      <a href="/emas"><span class="ni">💰</span>Emas</a>
+      <a href="/tips"><span class="ni">🍽️</span>Tips</a>
+    </div>
+    <div class="nav-cat">
+      <span class="nav-cat-title">⚕️ Kesehatan & Tubuh</span>
+      <a href="/bmi"><span class="ni">⚖️</span>BMI</a>
+      <a href="/berat-ideal"><span class="ni">📏</span>Berat Ideal</a>
+      <a href="/kalori"><span class="ni">🔥</span>Kalori</a>
+      <a href="/umur"><span class="ni">🎂</span>Umur</a>
+      <a href="/hpl"><span class="ni">🤰</span>HPL</a>
+    </div>
+    <div class="nav-cat">
+      <span class="nav-cat-title">🏠 Kebutuhan Harian</span>
+      <a href="/listrik"><span class="ni">⚡</span>Listrik</a>
+      <a href="/bbm"><span class="ni">⛽</span>BBM</a>
+      <a href="/kecepatan"><span class="ni">🚗</span>Kecepatan</a>
+      <a href="/pajak-motor"><span class="ni">🏍️</span>Pajak Motor</a>
+    </div>
+    <div class="nav-cat">
+      <span class="nav-cat-title">📐 Sains & Pendidikan</span>
+      <a href="/suhu"><span class="ni">🌡️</span>Suhu</a>
+      <a href="/waktu"><span class="ni">⏱️</span>Waktu</a>
+      <a href="/konversi-panjang"><span class="ni">📏</span>Panjang</a>
+      <a href="/bangun-datar"><span class="ni">📐</span>Bangun Datar</a>
+      <a href="/volume"><span class="ni">📦</span>Volume</a>
+    </div>
+    <div class="nav-cat">
+      <span class="nav-cat-title">📝 Produktivitas</span>
+      <a href="/kata"><span class="ni">📝</span>Kata (Word Counter)</a>
+    </div>
+  </div>
+</div>
+
 <div class="hero"><h1>⛽ Kalkulator Biaya BBM</h1><p>Hitung biaya bensin untuk perjalanan berdasarkan jarak & konsumsi BBM.</p></div>
 <div class="container">
 <div class="calc-card">
@@ -70,8 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <button class="btn-calc" onclick="hitung()">Hitung Sekarang</button>
 <div id="result" class="result"></div>
 </div>
-<div class="related"><h3>🔗 Kalkulator Terkait</h3><div class="related-links"><a href="/bmi">BMI</a><a href="/kurs">Kurs</a><a href="/diskon">Diskon</a><a href="/umur">Umur</a><a href="/zakat">Zakat</a></div></div>
-<a href="/" class="back-link">← Kembali ke Semua Kalkulator</a>
+
 </div>
 <footer class="footer"><p><a href="/">KalkulatorOnline</a> &copy; 2026 — Gratis, tanpa iklan mengganggu.</p></footer>
 <script>
@@ -85,5 +165,20 @@ if(!j||!k||!h||j<=0||k<=0||h<=0){showResult('⚠️','Masukkan semua data dengan
 var l=j/k,biaya=l*h;
 showResult('Rp '+Math.round(biaya).toLocaleString('id-ID'),'Biaya BBM untuk '+j+' km','<small>BBM dibutuhkan: '+l.toFixed(1)+' L • Konsumsi: '+k+' km/L • Harga: Rp '+Math.round(h).toLocaleString('id-ID')+'/L</small>'); }
 </script>
+
+<script>
+function openMenu(){document.getElementById('navOverlay').classList.add('show');document.getElementById('navDrawer').classList.add('show');document.body.classList.add('nav-open')}
+function closeMenu(){document.getElementById('navOverlay').classList.remove('show');document.getElementById('navDrawer').classList.remove('show');document.body.classList.remove('nav-open')}
+// Highlight current page
+(function(){
+  var page = location.pathname.replace(/^\/|\/$/g,'').split('/').pop() || 'index';
+  var links = document.querySelectorAll('.nav-drawer a');
+  for(var i=0;i<links.length;i++){
+    var href = links[i].getAttribute('href').replace(/^\/|\/$/g,'').split('/').pop() || 'index';
+    if(href === page) links[i].classList.add('nav-current');
+  }
+})();
+</script>
+
 </body>
 </html>
