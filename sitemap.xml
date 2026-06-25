@@ -26,4 +26,6 @@
 <url><loc>https://kalkulator-phi-navy.vercel.app/volume</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://kalkulator-phi-navy.vercel.app/pajak-motor</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://kalkulator-phi-navy.vercel.app/konversi-panjang</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/privacy</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kalkulator-phi-navy.vercel.app/about</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
